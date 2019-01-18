@@ -16,7 +16,7 @@ Alpha instructions for installation of Pixelfed with Scripts
     
 ```sh
 $ screen
-$ php artisan horizon
+$ sudo -u www-data php artisan horizon
 $ ctrl + a + d
 ```
 
