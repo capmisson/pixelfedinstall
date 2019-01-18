@@ -2,6 +2,7 @@
 
 Alpha instructions for installation of Pixelfed with Scripts
 
+  - sudo apt install git
   - git clone https://github.com/capmisson/pixelfedinstall ./
   - bash script1.sh
   - Edit /etc/php/7.2/fpm/pool.d/pixelfed.conf and change pixelfed username and group for your username and group
