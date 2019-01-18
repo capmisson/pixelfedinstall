@@ -11,6 +11,7 @@ make_password () {
 cd /var/www/vhosts/pixelfed/httpdocs && php artisan key:generate
 cd /var/www/vhosts/pixelfed/httpdocs && php artisan storage:link
 cd
+make_password
 ${SUDO} -u postgres psql --command "CREATE ROLE pixelfed PASSWORD '${PASS}' NOSUPERUSER NOCREATEDB NOCREATEROLE INHERIT LOGIN"
 ${SUDO} -u postgres createdb -O pixelfed pixelfed
 ${SUDO} sed -i "s/DB_CONNECTION=.*/DB_CONNECTION=pgsql/" /var/www/vhosts/pixelfed/httpdocs/.env
@@ -21,6 +22,7 @@ ${SUDO} sed -i "s/DB_PORT=.*/DB_PORT=5432/" /var/www/vhosts/pixelfed/httpdocs/.e
 cd /var/www/vhosts/pixelfed/httpdocs && php artisan migrate
 ${SUDO} apt install screen
 echo "Execute screen and php artisan horizon"
+
 
 
 
