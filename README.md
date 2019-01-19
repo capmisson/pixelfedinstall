@@ -27,7 +27,7 @@ $ sudo -u www-data php artisan horizon
 
 Leave screen on background (ctrl + a + d)
 ```sh
-$ sudo nano /etc/nginx/sites-available/example.com.con
+$ sudo nano /etc/nginx/sites-available/example.com.conf
 
 ```
 
