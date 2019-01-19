@@ -17,12 +17,9 @@ ADMIN_DOMAIN="localhost" -> change localhost to your domain name
 APP_DOMAIN="localhost" -> change localhost to your domain name
 ```
 
-Execute 2nd Script & make Horizon run on Screen Background
+Execute 2nd Script 
 ```sh
 $ bash script2.sh
-$ cd /var/www/vhosts/pixelfed
-$ screen
-$ sudo -u www-data php artisan horizon
 ```
 
 Create pixelfed database user and database
