@@ -21,12 +21,82 @@ $sudo sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" >
 $sudo apt-get update
 ```
 
+Install Erlang Solutions repo
+```sh
+$sudo wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && ${SUDO} dpkg -i erlang-solutions_1.0_all.deb        
+$sudo apt-get update
+```
 
+Install Elixir   
+```sh
+$sudo apt-get install -y erlang-dev erlang-xmerl erlang-parsetools elixir
+```
 
+Install Node.js 10.x
+```sh
+$sudo wget -qO- https://deb.nodesource.com/setup_10.x | ${SUDO} -E bash -
+$sudo apt-get install -y nodejs build-essential
+```
 
+Install Yarn
+```sh
+$sudo apt-get update && ${SUDO} apt-get install yarn
+```
 
+Install htop, bmon, mc and misc tools required by pixelfed
+```sh
+$sudo apt-get install -y htop bmon mc pngquant optipng jpegoptim gifsicle
+```
 
+Install PHP 7.2 FPM + additional extensions requiredd by pixelfed
+```sh
+$sudo apt-get install -y php7.2-fpm php7.2 php7.2-common php7.2-cli php7.2-gd php7.2-mbstring php7.2-xml php7.2-json php7.2-bcmath php7.2-pgsql php7.2-curl
+```
 
+Install Nginx, Redis and Postgres
+```sh
+$sudo apt-get install -y nginx redis-server postgresql
+```
+
+Configure Redis supervised by systemd
+```sh
+$sudo sed -i "s/supervised no/supervised systemd/" /etc/redis/redis.conf
+$sudo systemctl restart redis
+```
+
+Install svgo required by pixelfed, also curl
+```sh
+$sudo npm install -g svgo
+$sudo apt install curl
+```
+
+Install composer
+```sh
+$sudo curl -s https://getcomposer.org/installer | php
+$sudo mv composer.phar /usr/local/bin/composer
+$sudo chmod +x /usr/local/bin/composer
+```
+
+Restart php7.2-fpm (might not be needed)
+```sh
+$sudo systemctl restart php7.2-fpm
+```
+
+Create pixelfed vhost directory
+```sh
+$sudo mkdir /var/www/vhosts
+$sudo mkdir /var/www/vhosts/pixelfed
+```
+
+Install pixelfed into vhost
+```sh
+$sudo git clone https://github.com/pixelfed/pixelfed.git /var/www/vhosts/pixelfed
+$sudo mkdir /var/www/vhosts/pixelfed/logs  
+$sudo chown $USERNAME:$GROUP /var/www/vhosts/pixelfed/ -R
+$sudo apt install zip unzip
+cd /var/www/vhosts/pixelfed && composer install
+cp /var/www/vhosts/pixelfed/.env.example /var/www/vhosts/pixelfed/.env
+```
 
 Edit /var/www/vhosts/pixelfed/.env and change:
 ```sh
@@ -45,10 +115,10 @@ Create pixelfed database user and database
 ```sh
 cd /tmp
 wget https://dev.mysql.com/get/mysql-apt-config_0.8.11-1_all.deb
-sudo dpkg -i mysql-apt-config* 
-sudo apt update 
-sudo apt-get install mysql-server mysql-client mysql-common -y
-sudo systemctl status mysql 
+$sudo dpkg -i mysql-apt-config* 
+$sudo apt update 
+$sudo apt-get install mysql-server mysql-client mysql-common -y
+$sudo systemctl status mysql 
 mysql_secure_installation 
 
 mysql -u root -p 
