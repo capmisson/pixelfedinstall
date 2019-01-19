@@ -47,6 +47,7 @@ deb-src http://deb.debian.org/debian stretch-backports main contrib non-free
 
 Then install certbot & stretch-backports:
 ```sh
+$ sudo apt update
 $ sudo apt install python-certbot-nginx -t stretch-backports
 $ sudo certbot --nginx -d example.com -d www.example.com
 ```
