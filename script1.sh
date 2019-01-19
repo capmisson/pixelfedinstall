@@ -57,7 +57,7 @@ ${SUDO} mkdir /var/www/vhosts/pixelfed
 ${SUDO} mkdir /var/www/vhosts/pixelfed/logs
 
 # Install pixelfed into vhost
-${SUDO} git clone https://github.com/dansup/pixelfed.git /var/www/vhosts/pixelfed
+${SUDO} git clone https://github.com/pixelfed/pixelfed.git /var/www/vhosts/pixelfed
 ${SUDO} chown $USERNAME:$GROUP /var/www/vhosts/pixelfed/ -R
 ${SUDO} apt install zip unzip
 cd /var/www/vhosts/pixelfed && composer install
