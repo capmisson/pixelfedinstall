@@ -68,7 +68,7 @@ $ php artisan config:cache
 Go to your domain, create a new user and then if you want to upgrade it to admin:
 ```sh
 $ php artisan tinker
-$ $username = ‘yourusername’;
+$ $username = 'yourusername';
 $ $user = User::whereUsername($username)->first();
 $ $user->is_admin = true;
 $ $user->save();
