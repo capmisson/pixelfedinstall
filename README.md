@@ -1,5 +1,6 @@
-# Pixelfed Installation Instructions wih Mysql
+# Pixelfed Installation Instructions
 Tested on a fresh Debian 9 installation
+Using MySql community edition, no MariaDB neither PostgreSQL recommended by Pixelfed devs
 
 Alpha instructions for installation of Pixelfed with Scripts
 
