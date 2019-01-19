@@ -25,7 +25,5 @@ ${SUDO} apt install curl
 ${SUDO} curl -s https://getcomposer.org/installer | php
 ${SUDO} mv composer.phar /usr/local/bin/composer
 ${SUDO} chmod +x /usr/local/bin/composer
-${SUDO} wget https://gist.githubusercontent.com/carbontwelve/024c68c68605dc581474145eda74ac38/raw/e345baa8d3fb6ea466c3e2c432eb10f120b567ee/pixelfed.fpm.conf
-${SUDO} cp ./pixelfed.fpm.conf /etc/php/7.2/fpm/pool.d/pixelfed.conf
 $echo "Edit /etc/php/7.2/fpm/pool.d/pixelfed.conf and change pixelfed username and group for your username and group"
 
