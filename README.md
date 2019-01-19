@@ -10,15 +10,14 @@ $ bash script1.sh
 ```
 
 Edit /var/www/vhosts/pixelfed/httpdocs/.env and change:
-  - APP_URL=http://localhost -> change localhost to your domain name
-  - ADMIN_DOMAIN="localhost" -> change localhost to your domain name
-  - APP_DOMAIN="localhost" -> change localhost to your domain name
+```sh
+APP_URL=http://localhost -> change localhost to your domain name
+ADMIN_DOMAIN="localhost" -> change localhost to your domain name
+APP_DOMAIN="localhost" -> change localhost to your domain name
+```
 
 ```sh
-bash script2.sh
- ```
-    
-```sh
+$ bash script2.sh
 $ screen
 $ sudo -u www-data php artisan horizon
 $ ctrl + a + d
