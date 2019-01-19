@@ -20,9 +20,8 @@ APP_DOMAIN="localhost" -> change localhost to your domain name
 $ bash script2.sh
 $ screen
 $ sudo -u www-data php artisan horizon
-$ ctrl + a + d
 ```
-
+Leave screen on background (ctrl + a + d)
 
 ```sh
 $ sudo nano /etc/nginx/sites-available/example.com
@@ -37,9 +36,10 @@ $ sudo nano /etc/apt/sources.list
 ```
 
 add:
->deb http://deb.debian.org/debian stretch-backports main contrib non-free
-
->deb-src http://deb.debian.org/debian stretch-backports main contrib non-free
+```sh
+deb http://deb.debian.org/debian stretch-backports main contrib non-free
+deb-src http://deb.debian.org/debian stretch-backports main contrib non-free
+```
 
 Then:
 ```sh
