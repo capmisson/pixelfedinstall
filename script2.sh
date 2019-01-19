@@ -23,7 +23,7 @@ ${SUDO} sed -i "s/DB_CONNECTION=.*/DB_CONNECTION=pgsql/" /var/www/vhosts/pixelfe
 ${SUDO} sed -i "s/DB_DATABASE=.*/DB_DATABASE=pixelfed/" /var/www/vhosts/pixelfed/.env
 ${SUDO} sed -i "s/DB_USERNAME=.*/DB_USERNAME=pixelfed/" /var/www/vhosts/pixelfed/.env
 ${SUDO} sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=${PASS}/" /var/www/vhosts/pixelfed/.env
-${SUDO} sed -i "s/DB_PORT=.*/DB_PORT=5432/" /var/www/vhosts/pixelfed/httpdocs/.env
+${SUDO} sed -i "s/DB_PORT=.*/DB_PORT=5432/" /var/www/vhosts/pixelfed/.env
 cd /var/www/vhosts/pixelfed && php artisan migrate
 
 # Install screen
