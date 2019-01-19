@@ -35,6 +35,7 @@ $ sudo nano /etc/apt/sources.list
 
 add:
 >deb http://deb.debian.org/debian stretch-backports main contrib non-free
+
 >deb-src http://deb.debian.org/debian stretch-backports main contrib non-free
 
 Then:
