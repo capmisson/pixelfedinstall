@@ -25,6 +25,49 @@ $ screen
 $ sudo -u www-data php artisan horizon
 ```
 
+# Create pixelfed database user and database
+```sh
+cd /tmp
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.11-1_all.deb
+sudo dpkg -i mysql-apt-config* 
+sudo apt update 
+sudo apt-get install mysql-server mysql-client mysql-common -y
+sudo systemctl status mysql 
+mysql_secure_installation 
+
+mysql -u root -p 
+
+
+CREATE USER 'pixelfed'@'localhost' IDENTIFIED BY 'password'; 
+CREATE DATABASE pixelfed; 
+GRANT ALL PRIVILEGES ON pixelfed.* TO 'pixelfed'@'localhost'; 
+FLUSH PRIVILEGES;  
+exit
+```
+
+# Edit .env
+```sh
+DB_CONNECTION=mysql
+DB_DATABASE=pixelfed
+DB_username=pixelfed
+DB_PASSWORD=password
+DB_PORT=3306
+```
+# Migrate DB
+```sh
+cd /var/www/vhosts/pixelfed && php artisan migrate
+```
+# Install screen
+```sh
+${SUDO} apt install screen
+```
+
+# Execute screen and Horizon
+```sh
+screen
+sudo -u www-data php artisan horizon
+```
+
 Leave screen on background (ctrl + a + d)
 ```sh
 $ sudo nano /etc/nginx/sites-available/example.com.conf
