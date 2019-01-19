@@ -1,4 +1,5 @@
-# Pixelfed Installation Instructions with script
+# Pixelfed Installation Instructions wih Mysql
+Tested on a fresh Debian 9 installation
 
 Alpha instructions for installation of Pixelfed with Scripts
 
@@ -10,6 +11,22 @@ $ cd pixelfedinstall
 $ sudo apt install php7.2-mysql
 $ bash script1.sh
 ```
+
+Install sury.org package source
+```sh
+$sudo apt-get update
+$sudo apt-get -y install apt-transport-https lsb-release ca-certificates
+$sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+$sudo sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
+$sudo apt-get update
+```
+
+
+
+
+
+
+
 
 Edit /var/www/vhosts/pixelfed/.env and change:
 ```sh
