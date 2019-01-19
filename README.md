@@ -2,6 +2,7 @@
 
 Alpha instructions for installation of Pixelfed with Scripts
 
+1. Install Git + Download Scripts
 ```sh
 $ sudo apt install git
 $ git clone https://github.com/capmisson/pixelfedinstall
@@ -16,7 +17,7 @@ ADMIN_DOMAIN="localhost" -> change localhost to your domain name
 APP_DOMAIN="localhost" -> change localhost to your domain name
 ```
 
-Then continue with Script2
+Execute 2nd Script & make Horizon run on Screen Background
 ```sh
 $ bash script2.sh
 $ screen
@@ -28,7 +29,7 @@ Leave screen on background (ctrl + a + d)
 $ sudo nano /etc/nginx/sites-available/example.com
 ```
 
-Edit the file as https://github.com/capmisson/pixelfedinstall/blob/master/example.conf
+Edit the nginx config file as https://github.com/capmisson/pixelfedinstall/blob/master/example.conf
 
 ```sh
 $ sudo ln -s /etc/nginx/sites-available/example.com.conf /etc/nginx/sites-enabled/
@@ -36,13 +37,13 @@ $ sudo service nginx reload
 $ sudo nano /etc/apt/sources.list
 ```
 
-add:
+Add Sources for Certbot + Stretch-Backports:
 ```sh
 deb http://deb.debian.org/debian stretch-backports main contrib non-free
 deb-src http://deb.debian.org/debian stretch-backports main contrib non-free
 ```
 
-Then:
+Then install certbot & stretch-backports:
 ```sh
 $ sudo apt install python-certbot-nginx -t stretch-backports
 $ sudo certbot --nginx -d example.com -d www.example.com
@@ -53,14 +54,15 @@ Select the option of redirecting all transit thru https
 $ sudo nano /var/www/vhosts/pixelfed/httpdocs/.env
 ```
 
-edit app_url to https
-edit mail smtp info
-
+Edit app_url to https
+Edit mail smtp info
+Then refresh cache as follows:
 ```sh
 $ cd /var/www/vhosts/pixelfed/httpdocs/
 $ php artisan config:cache
 ```
-Create admin:
+
+Go to your domain, create a new user and then if you want to upgrade it to admin:
 ```sh
 $ php artisan tinker
 $ $username = ‘yourusername’;
