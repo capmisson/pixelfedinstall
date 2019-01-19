@@ -75,7 +75,7 @@ $ sudo nano /etc/nginx/sites-available/example.com.conf
 
 ```
 
-Edit the nginx config file as https://github.com/capmisson/pixelfedinstall/blob/master/example.conf
+Edit the nginx config file as https://github.com/capmisson/pixelfedinstall/blob/master/example.com.conf
 
 ```sh
 $ sudo ln -s /etc/nginx/sites-available/example.com.conf /etc/nginx/sites-enabled/
