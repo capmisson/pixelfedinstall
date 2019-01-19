@@ -107,10 +107,12 @@ Then refresh cache as follows:
 ```sh
 $ cd /var/www/vhosts/pixelfed
 $ php artisan config:cache
+$ sudo chown www-data:www-data /var/www/vhosts/pixelfed/ -R
 ```
 
 Go to your domain, create a new user and then if you want to upgrade it to admin:
 ```sh
+$ sudo chown username:group /var/www/vhosts/pixelfed/ -R
 $ php artisan tinker
 $ $username = 'yourusername';
 $ $user = User::whereUsername($username)->first();
