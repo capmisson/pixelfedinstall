@@ -10,7 +10,7 @@ $ cd pixelfedinstall
 $ bash script1.sh
 ```
 
-Edit /var/www/vhosts/pixelfed/httpdocs/.env and change:
+Edit /var/www/vhosts/pixelfed/.env and change:
 ```sh
 APP_URL=http://localhost -> change localhost to your domain name
 ADMIN_DOMAIN="localhost" -> change localhost to your domain name
@@ -20,6 +20,7 @@ APP_DOMAIN="localhost" -> change localhost to your domain name
 Execute 2nd Script & make Horizon run on Screen Background
 ```sh
 $ bash script2.sh
+$ cd /var/www/vhosts/pixelfed
 $ screen
 $ sudo -u www-data php artisan horizon
 ```
@@ -51,14 +52,14 @@ $ sudo certbot --nginx -d example.com -d www.example.com
 Select the option of redirecting all transit thru https
 
 ```sh
-$ sudo nano /var/www/vhosts/pixelfed/httpdocs/.env
+$ sudo nano /var/www/vhosts/pixelfed/.env
 ```
 
 Edit app_url to https
 Edit mail smtp info
 Then refresh cache as follows:
 ```sh
-$ cd /var/www/vhosts/pixelfed/httpdocs/
+$ cd /var/www/vhosts/pixelfed
 $ php artisan config:cache
 ```
 
