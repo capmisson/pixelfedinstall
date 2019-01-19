@@ -6,10 +6,6 @@ Alpha instructions for installation of Pixelfed with Scripts
 1. Install Git + Download Scripts
 ```sh
 $ sudo apt install git
-$ git clone https://github.com/capmisson/pixelfedinstall
-$ cd pixelfedinstall
-$ sudo apt install php7.2-mysql
-$ bash script1.sh
 ```
 
 Install sury.org package source
@@ -105,19 +101,19 @@ ADMIN_DOMAIN="localhost" -> change localhost to your domain name
 APP_DOMAIN="localhost" -> change localhost to your domain name
 ```
 
-Execute 2nd Script 
+Continue installing pixelfed into vhost
 ```sh
-$ bash script2.sh
+cd /var/www/vhosts/pixelfed && php artisan key:generate
+cd /var/www/vhosts/pixelfed && php artisan storage:link        
 ```
 
 Create pixelfed database user and database
-
 ```sh
 cd /tmp
 wget https://dev.mysql.com/get/mysql-apt-config_0.8.11-1_all.deb
 $ sudo dpkg -i mysql-apt-config* 
 $ sudo apt update 
-$ sudo apt-get install mysql-server mysql-client mysql-common -y
+$ sudo apt-get install mysql-server mysql-client mysql-common php7.2-mysql -y
 $ sudo systemctl status mysql 
 $ mysql_secure_installation 
 $ mysql -u root -p 
@@ -185,8 +181,21 @@ Select the option of redirecting all transit thru https
 $ sudo nano /var/www/vhosts/pixelfed/.env
 ```
 
-Edit app_url to https
-Edit mail smtp info ** (check end of README)
+Edit app_url to add https
+Edit smtp config (MailGun recommended) example config for Mailgun:
+** Config for Mailgun:
+
+```sh
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.mailgun.org
+MAIL_PORT=587 
+MAIL_USERNAME=postmaster@example.com
+MAIL_PASSWORD=YOURMAILGUNSMTPPASSWORD
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="pixelfed@example.com"
+MAIL_FROM_NAME="Pixelfed"
+```
+
 Then refresh cache as follows:
 ```sh
 $ cd /var/www/vhosts/pixelfed
@@ -207,14 +216,4 @@ $ php artisan config:cache
 $ sudo chown www-data:www-data /var/www/vhosts/pixelfed/ -R
 ```
 
-** Config for Mailgun:
-```sh
-MAIL_DRIVER=smtp
-MAIL_HOST=smtp.mailgun.org
-MAIL_PORT=587 
-MAIL_USERNAME=postmaster@example.com
-MAIL_PASSWORD=YOURMAILGUNSMTPPASSWORD
-MAIL_ENCRYPTION=null
-MAIL_FROM_ADDRESS="pixelfed@example.com"
-MAIL_FROM_NAME="Pixelfed"
-```
+Check the site on https://anartist.world
