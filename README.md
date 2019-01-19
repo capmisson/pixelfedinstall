@@ -27,7 +27,8 @@ $ sudo -u www-data php artisan horizon
 
 Leave screen on background (ctrl + a + d)
 ```sh
-$ sudo nano /etc/nginx/sites-available/example.com
+$ sudo nano /etc/nginx/sites-available/example.com.con
+
 ```
 
 Edit the nginx config file as https://github.com/capmisson/pixelfedinstall/blob/master/example.conf
