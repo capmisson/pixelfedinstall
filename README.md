@@ -14,86 +14,86 @@ $ bash script1.sh
 
 Install sury.org package source
 ```sh
-$sudo apt-get update
-$sudo apt-get -y install apt-transport-https lsb-release ca-certificates
-$sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
-$sudo sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
-$sudo apt-get update
+$ sudo apt-get update
+$ sudo apt-get -y install apt-transport-https lsb-release ca-certificates
+$ sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+$ sudo sh -c 'echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list'
+$ sudo apt-get update
 ```
 
 Install Erlang Solutions repo
 ```sh
-$sudo wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && ${SUDO} dpkg -i erlang-solutions_1.0_all.deb        
-$sudo apt-get update
+$ sudo wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && ${SUDO} dpkg -i erlang-solutions_1.0_all.deb        
+$ sudo apt-get update
 ```
 
 Install Elixir   
 ```sh
-$sudo apt-get install -y erlang-dev erlang-xmerl erlang-parsetools elixir
+$ sudo apt-get install -y erlang-dev erlang-xmerl erlang-parsetools elixir
 ```
 
 Install Node.js 10.x
 ```sh
-$sudo wget -qO- https://deb.nodesource.com/setup_10.x | ${SUDO} -E bash -
-$sudo apt-get install -y nodejs build-essential
+$ sudo wget -qO- https://deb.nodesource.com/setup_10.x | ${SUDO} -E bash -
+$ sudo apt-get install -y nodejs build-essential
 ```
 
 Install Yarn
 ```sh
-$sudo apt-get update && ${SUDO} apt-get install yarn
+$ sudo apt-get update && ${SUDO} apt-get install yarn
 ```
 
 Install htop, bmon, mc and misc tools required by pixelfed
 ```sh
-$sudo apt-get install -y htop bmon mc pngquant optipng jpegoptim gifsicle
+$ sudo apt-get install -y htop bmon mc pngquant optipng jpegoptim gifsicle
 ```
 
 Install PHP 7.2 FPM + additional extensions requiredd by pixelfed
 ```sh
-$sudo apt-get install -y php7.2-fpm php7.2 php7.2-common php7.2-cli php7.2-gd php7.2-mbstring php7.2-xml php7.2-json php7.2-bcmath php7.2-pgsql php7.2-curl
+$ sudo apt-get install -y php7.2-fpm php7.2 php7.2-common php7.2-cli php7.2-gd php7.2-mbstring php7.2-xml php7.2-json php7.2-bcmath php7.2-pgsql php7.2-curl
 ```
 
 Install Nginx, Redis and Postgres
 ```sh
-$sudo apt-get install -y nginx redis-server postgresql
+$ sudo apt-get install -y nginx redis-server postgresql
 ```
 
 Configure Redis supervised by systemd
 ```sh
-$sudo sed -i "s/supervised no/supervised systemd/" /etc/redis/redis.conf
-$sudo systemctl restart redis
+$ sudo sed -i "s/supervised no/supervised systemd/" /etc/redis/redis.conf
+$ sudo systemctl restart redis
 ```
 
 Install svgo required by pixelfed, also curl
 ```sh
-$sudo npm install -g svgo
-$sudo apt install curl
+$ sudo npm install -g svgo
+$ sudo apt install curl
 ```
 
 Install composer
 ```sh
-$sudo curl -s https://getcomposer.org/installer | php
-$sudo mv composer.phar /usr/local/bin/composer
-$sudo chmod +x /usr/local/bin/composer
+$ sudo curl -s https://getcomposer.org/installer | php
+$ sudo mv composer.phar /usr/local/bin/composer
+$ sudo chmod +x /usr/local/bin/composer
 ```
 
 Restart php7.2-fpm (might not be needed)
 ```sh
-$sudo systemctl restart php7.2-fpm
+$ sudo systemctl restart php7.2-fpm
 ```
 
 Create pixelfed vhost directory
 ```sh
-$sudo mkdir /var/www/vhosts
-$sudo mkdir /var/www/vhosts/pixelfed
+$ sudo mkdir /var/www/vhosts
+$ sudo mkdir /var/www/vhosts/pixelfed
 ```
 
 Install pixelfed into vhost
 ```sh
-$sudo git clone https://github.com/pixelfed/pixelfed.git /var/www/vhosts/pixelfed
-$sudo mkdir /var/www/vhosts/pixelfed/logs  
-$sudo chown $USERNAME:$GROUP /var/www/vhosts/pixelfed/ -R
-$sudo apt install zip unzip
+$ sudo git clone https://github.com/pixelfed/pixelfed.git /var/www/vhosts/pixelfed
+$ sudo mkdir /var/www/vhosts/pixelfed/logs  
+$ sudo chown $USERNAME:$GROUP /var/www/vhosts/pixelfed/ -R
+$ sudo apt install zip unzip
 cd /var/www/vhosts/pixelfed && composer install
 cp /var/www/vhosts/pixelfed/.env.example /var/www/vhosts/pixelfed/.env
 ```
@@ -115,23 +115,20 @@ Create pixelfed database user and database
 ```sh
 cd /tmp
 wget https://dev.mysql.com/get/mysql-apt-config_0.8.11-1_all.deb
-$sudo dpkg -i mysql-apt-config* 
-$sudo apt update 
-$sudo apt-get install mysql-server mysql-client mysql-common -y
-$sudo systemctl status mysql 
-mysql_secure_installation 
-
-mysql -u root -p 
-
-
-CREATE USER 'pixelfed'@'localhost' IDENTIFIED BY 'password'; 
-CREATE DATABASE pixelfed; 
-GRANT ALL PRIVILEGES ON pixelfed.* TO 'pixelfed'@'localhost'; 
-FLUSH PRIVILEGES;  
-exit
+$ sudo dpkg -i mysql-apt-config* 
+$ sudo apt update 
+$ sudo apt-get install mysql-server mysql-client mysql-common -y
+$ sudo systemctl status mysql 
+$ mysql_secure_installation 
+$ mysql -u root -p 
+mysql> CREATE USER 'pixelfed'@'localhost' IDENTIFIED BY 'password'; 
+mysql> CREATE DATABASE pixelfed; 
+mysql> GRANT ALL PRIVILEGES ON pixelfed.* TO 'pixelfed'@'localhost'; 
+mysql> FLUSH PRIVILEGES;  
+mysql> exit
 ```
 
-Edit .env
+Edit .env and change:
 ```sh
 DB_CONNECTION=mysql
 DB_DATABASE=pixelfed
@@ -142,17 +139,17 @@ DB_PORT=3306
 
 Migrate DB
 ```sh
-cd /var/www/vhosts/pixelfed && php artisan migrate
+$ cd /var/www/vhosts/pixelfed && php artisan migrate
 ```
 
 Install screen
 ```sh
-${SUDO} apt install screen
+$ sudo apt install screen
 ```
 
 Execute screen and Horizon
 ```sh
-screen
+$ screen
 sudo -u www-data php artisan horizon
 ```
 
