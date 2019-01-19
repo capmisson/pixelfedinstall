@@ -53,11 +53,10 @@ ${SUDO} systemctl restart php7.2-fpm
 # Create pixelfed vhost directory
 ${SUDO} mkdir /var/www/vhosts
 ${SUDO} mkdir /var/www/vhosts/pixelfed
-${SUDO} mkdir /var/www/vhosts/pixelfed
-${SUDO} mkdir /var/www/vhosts/pixelfed/logs
 
 # Install pixelfed into vhost
 ${SUDO} git clone https://github.com/pixelfed/pixelfed.git /var/www/vhosts/pixelfed
+${SUDO} mkdir /var/www/vhosts/pixelfed/logs
 ${SUDO} chown $USERNAME:$GROUP /var/www/vhosts/pixelfed/ -R
 ${SUDO} apt install zip unzip
 cd /var/www/vhosts/pixelfed && composer install
