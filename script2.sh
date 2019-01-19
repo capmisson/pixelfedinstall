@@ -9,8 +9,8 @@ make_password () {
 }
 
 # Continue installing pixelfed into vhost
-cd /var/www/vhosts/pixelfed/httpdocs && php artisan key:generate
-cd /var/www/vhosts/pixelfed/httpdocs && php artisan storage:link
+cd /var/www/vhosts/pixelfed && php artisan key:generate
+cd /var/www/vhosts/pixelfed && php artisan storage:link
 cd
 
 # Create pixelfed database user and database
@@ -19,12 +19,12 @@ ${SUDO} -u postgres psql --command "CREATE ROLE pixelfed PASSWORD '${PASS}' NOSU
 ${SUDO} -u postgres createdb -O pixelfed pixelfed
 
 # Insert info on .env
-${SUDO} sed -i "s/DB_CONNECTION=.*/DB_CONNECTION=pgsql/" /var/www/vhosts/pixelfed/httpdocs/.env
-${SUDO} sed -i "s/DB_DATABASE=.*/DB_DATABASE=pixelfed/" /var/www/vhosts/pixelfed/httpdocs/.env
-${SUDO} sed -i "s/DB_USERNAME=.*/DB_USERNAME=pixelfed/" /var/www/vhosts/pixelfed/httpdocs/.env
-${SUDO} sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=${PASS}/" /var/www/vhosts/pixelfed/httpdocs/.env
+${SUDO} sed -i "s/DB_CONNECTION=.*/DB_CONNECTION=pgsql/" /var/www/vhosts/pixelfed/.env
+${SUDO} sed -i "s/DB_DATABASE=.*/DB_DATABASE=pixelfed/" /var/www/vhosts/pixelfed/.env
+${SUDO} sed -i "s/DB_USERNAME=.*/DB_USERNAME=pixelfed/" /var/www/vhosts/pixelfed/.env
+${SUDO} sed -i "s/DB_PASSWORD=.*/DB_PASSWORD=${PASS}/" /var/www/vhosts/pixelfed/.env
 ${SUDO} sed -i "s/DB_PORT=.*/DB_PORT=5432/" /var/www/vhosts/pixelfed/httpdocs/.env
-cd /var/www/vhosts/pixelfed/httpdocs && php artisan migrate
+cd /var/www/vhosts/pixelfed && php artisan migrate
 
 # Install screen
 ${SUDO} apt install screen
