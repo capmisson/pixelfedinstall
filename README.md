@@ -25,7 +25,8 @@ $ screen
 $ sudo -u www-data php artisan horizon
 ```
 
-# Create pixelfed database user and database
+Create pixelfed database user and database
+
 ```sh
 cd /tmp
 wget https://dev.mysql.com/get/mysql-apt-config_0.8.11-1_all.deb
@@ -45,7 +46,7 @@ FLUSH PRIVILEGES;
 exit
 ```
 
-# Edit .env
+Edit .env
 ```sh
 DB_CONNECTION=mysql
 DB_DATABASE=pixelfed
@@ -53,16 +54,18 @@ DB_username=pixelfed
 DB_PASSWORD=password
 DB_PORT=3306
 ```
-# Migrate DB
+
+Migrate DB
 ```sh
 cd /var/www/vhosts/pixelfed && php artisan migrate
 ```
-# Install screen
+
+Install screen
 ```sh
 ${SUDO} apt install screen
 ```
 
-# Execute screen and Horizon
+Execute screen and Horizon
 ```sh
 screen
 sudo -u www-data php artisan horizon
