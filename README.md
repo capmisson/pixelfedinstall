@@ -7,11 +7,6 @@ $ sudo apt install git
 $ git clone https://github.com/capmisson/pixelfedinstall
 $ cd pixelfedinstall
 $ bash script1.sh
-```
-
-Edit /etc/php/7.2/fpm/pool.d/pixelfed.conf and change pixelfed username and group for your username and group
-
-```sh
 $ bash script2.sh
 ```
 
