@@ -7,7 +7,6 @@ $ sudo apt install git
 $ git clone https://github.com/capmisson/pixelfedinstall
 $ cd pixelfedinstall
 $ bash script1.sh
-$ bash script2.sh
 ```
 
 Edit /var/www/vhosts/pixelfed/httpdocs/.env and change:
@@ -16,7 +15,7 @@ Edit /var/www/vhosts/pixelfed/httpdocs/.env and change:
   - APP_DOMAIN="localhost" -> change localhost to your domain name
 
 ```sh
-bash script3.sh
+bash script2.sh
  ```
     
 ```sh
