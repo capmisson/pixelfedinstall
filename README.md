@@ -58,7 +58,7 @@ $ sudo nano /var/www/vhosts/pixelfed/.env
 ```
 
 Edit app_url to https
-Edit mail smtp info
+Edit mail smtp info ** (check end of README)
 Then refresh cache as follows:
 ```sh
 $ cd /var/www/vhosts/pixelfed
@@ -75,4 +75,16 @@ $ $user->save();
 $ exit
 $ php artisan config:cache
 $ sudo chown www-data:www-data /var/www/vhosts/pixelfed/ -R
+```
+
+** Config for Mailgun:
+```sh
+MAIL_DRIVER=smtp
+MAIL_HOST=smtp.mailgun.org
+MAIL_PORT=587 
+MAIL_USERNAME=postmaster@example.com
+MAIL_PASSWORD=YOURMAILGUNSMTPPASSWORD
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="pixelfed@example.com"
+MAIL_FROM_NAME="Pixelfed"
 ```
