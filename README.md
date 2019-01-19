@@ -16,13 +16,14 @@ ADMIN_DOMAIN="localhost" -> change localhost to your domain name
 APP_DOMAIN="localhost" -> change localhost to your domain name
 ```
 
+Then continue with Script2
 ```sh
 $ bash script2.sh
 $ screen
 $ sudo -u www-data php artisan horizon
 ```
-Leave screen on background (ctrl + a + d)
 
+Leave screen on background (ctrl + a + d)
 ```sh
 $ sudo nano /etc/nginx/sites-available/example.com
 ```
